@@ -31,6 +31,12 @@ export default {
           this.store.searchListMovie = response.data.results;
           console.log(this.store.searchListMovie)
         })
+        .catch((error) => {
+          console.log('error', error)
+          //this.store.loadingTime = false
+          this.store.searchListMovie = []
+          //this.getCharacters()
+        });
     },
     getSearchApiTv(){
       console.log('sono dentro', this.store.textSearch)
@@ -46,6 +52,12 @@ export default {
           this.store.searchListTv = response.data.results;
           console.log(this.store.searchListTv)
         })
+        .catch((error) => {
+          console.log('error tv', error)
+          //this.store.loadingTime = false
+          this.store.searchListTv = []
+          //this.getCharacters()
+        });
     }
   },
   
