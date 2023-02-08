@@ -70,7 +70,9 @@ export default {
         <li>
           {{ index }}: {{ element.original_title }}
         </li>
-        
+        <li>
+          {{ index }}: <img :src="`http://image.tmdb.org/t/p/w342/${element.poster_path}`" :alt="element.original_title">
+        </li>
         <li>
           {{ index }}: {{ element.original_language }}
           <span :class="`fi fi-${element.original_language}`"></span>
@@ -91,7 +93,9 @@ export default {
         <li>
           {{ index }}: {{ element.original_name }}
         </li>
-        
+        <li>
+          {{ index }}: <img :src="`http://image.tmdb.org/t/p/w342/${element.poster_path}`" :alt="element.original_name">
+        </li>
         <li>
           {{ index }}: {{ element.original_language }}
           <span :class="`fi fi-${element.original_language}`"></span>
