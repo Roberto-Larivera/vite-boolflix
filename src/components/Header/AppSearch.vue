@@ -13,7 +13,7 @@ export default {
 
 <template>
   <div>
-    <form action="" @submit.prevent="store.textSearch">
+    <form action="" @submit.prevent="$emit('search')">
       <input type="search" name="search" id="input-search" placeholder="Search text" v-model="store.textSearch">
       <button type="submit">Cerca</button>
     </form>
