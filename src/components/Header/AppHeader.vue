@@ -4,24 +4,24 @@ import { store } from '../../store.js';
 import AppSearch from './AppSearch.vue';
 export default {
   name: 'AppHeader',
-  components:{
+  components: {
     AppSearch,
   },
-  data(){
-    return{
+  data() {
+    return {
       store,
     }
   },
   methods: {
-    getCombined(){
+    getCombined() {
       this.getSearchApi()
       this.getSearchApiTv()
     },
-    getSearchApi(){
+    getSearchApi() {
       console.log('sono dentro', this.store.textSearch)
       axios
-        .get('https://api.themoviedb.org/3/search/movie',{
-          params:{
+        .get('https://api.themoviedb.org/3/search/movie', {
+          params: {
             api_key: '215df58ae2869f4519de0d1f0963b234',
             query: this.store.textSearch,
             language: 'it'
@@ -38,11 +38,11 @@ export default {
           //this.getCharacters()
         });
     },
-    getSearchApiTv(){
+    getSearchApiTv() {
       console.log('sono dentro', this.store.textSearch)
       axios
-        .get('https://api.themoviedb.org/3/search/tv',{
-          params:{
+        .get('https://api.themoviedb.org/3/search/tv', {
+          params: {
             api_key: '215df58ae2869f4519de0d1f0963b234',
             query: this.store.textSearch,
             language: 'it'
@@ -58,17 +58,20 @@ export default {
           this.store.searchListTv = []
           //this.getCharacters()
         });
+    },
+    trasformNumber(number) {
+      return Math.ceil(number) / 2
     }
   },
-  
+
 }
 </script>
 
 <template>
   <div>
-    <AppSearch @search="getCombined"/>
+    <AppSearch @search="getCombined" />
     <h2>
-      
+
       La tua ricerca: {{ store.textSearch }}
     </h2>
     <h2>
@@ -82,8 +85,9 @@ export default {
         <li>
           {{ index }}: {{ element.original_title }}
         </li>
-        <li>
-          {{ index }}: <img :src="`http://image.tmdb.org/t/p/w342/${element.poster_path}`" :alt="element.original_title">
+        <li v-if="element.poster_path != null">
+          {{ index }}: <img :src="`http://image.tmdb.org/t/p/w342/${element.poster_path}`"
+            :alt="element.original_title">
         </li>
         <li>
           {{ index }}: {{ element.original_language }}
@@ -91,6 +95,14 @@ export default {
         </li>
         <li>
           {{ index }}: {{ element.vote_average }}
+          {{ index }}: {{ trasformNumber(element.vote_average) }}
+          <span v-for="n in 5">
+            <font-awesome-icon :icon="['far', 'star']" />
+            <!-- <font-awesome-icon icon="fa-regular fa-star" /> -->
+
+
+          </span>
+
         </li>
       </ul>
     </div>
@@ -105,7 +117,7 @@ export default {
         <li>
           {{ index }}: {{ element.original_name }}
         </li>
-        <li>
+        <li v-if="element.poster_path != null">
           {{ index }}: <img :src="`http://image.tmdb.org/t/p/w342/${element.poster_path}`" :alt="element.original_name">
         </li>
         <li>
@@ -114,6 +126,9 @@ export default {
         </li>
         <li>
           {{ index }}: {{ element.vote_average }}
+          {{ index }}: {{ trasformNumber(element.vote_average) }}
+          <font-awesome-icon :icon="['far', 'star']" />
+          <!-- <font-awesome-icon icon="fa-regular fa-star" /> -->
         </li>
       </ul>
     </div>
@@ -121,4 +136,5 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+
 </style>
