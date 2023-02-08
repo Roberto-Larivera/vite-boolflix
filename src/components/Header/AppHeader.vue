@@ -60,7 +60,7 @@ export default {
         });
     },
     trasformNumber(number) {
-      return Math.ceil(number) / 2
+      return Math.round( Math.ceil(number) / 2)
     }
   },
 
@@ -96,8 +96,9 @@ export default {
         <li>
           {{ index }}: {{ element.vote_average }}
           {{ index }}: {{ trasformNumber(element.vote_average) }}
-          <span v-for="n in 5">
-            <font-awesome-icon :icon="['far', 'star']" />
+          <span>
+            <font-awesome-icon :icon="['fas', 'star']" v-for="n in trasformNumber(element.vote_average)"/>
+            <font-awesome-icon :icon="['far', 'star']" v-for="n in (5 - trasformNumber(element.vote_average))"/>
             <!-- <font-awesome-icon icon="fa-regular fa-star" /> -->
 
 
