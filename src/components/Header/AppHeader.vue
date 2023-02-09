@@ -57,13 +57,13 @@ export default {
 <template>
   <header>
     <div class="container">
-      <div class="row row-cols-2">
-        <div class="col">
+      <div class="row row-cols-2 p-3">
+        <div class="col d-flex align-items-center">
           <h1>
             Boolflix
           </h1>
         </div>
-        <div class="col">
+        <div class="col d-flex align-items-center">
           <AppSearch @search="getCombined" />
         </div>
       </div>
