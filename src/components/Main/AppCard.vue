@@ -38,9 +38,7 @@ export default {
 </script>
 
 <template>
-  <div>
-
-    <div>
+    <div class="card">
       <ul>
         <li>
           {{ cardTitle }}
@@ -71,7 +69,6 @@ export default {
         </li>
       </ul>
     </div>
-  </div>
 </template>
 
 <style lang="scss" scoped>

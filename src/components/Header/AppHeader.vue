@@ -48,22 +48,35 @@ export default {
           console.log('error', error)
         });
     },
-    
+
   },
 
 }
 </script>
 
 <template>
-  <div>
-    <AppSearch @search="getCombined" />
-    <h2>
-      La tua ricerca: {{ store.textSearch }}
-    </h2>
-
-  </div>
+  <header>
+    <div class="container">
+      <div class="row row-cols-2">
+        <div class="col">
+          <h1>
+            Boolflix
+          </h1>
+        </div>
+        <div class="col">
+          <AppSearch @search="getCombined" />
+        </div>
+      </div>
+    </div>
+  </header>
 </template>
 
 <style lang="scss" scoped>
-
+header{
+  background-color: black ;
+  h1{
+    font-weight: bold;
+    color: red;
+  }
+}
 </style>

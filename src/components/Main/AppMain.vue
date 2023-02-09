@@ -30,9 +30,6 @@ export default {
         case 'zh':
           lang = 'de'
           break;
-        
-          // case 'en':
-          // break;
 
       }
       console.log(lang,'lang')
