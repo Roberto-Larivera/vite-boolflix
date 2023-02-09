@@ -16,6 +16,29 @@ export default {
   methods: {
     trasformNumber(number) {
       return Math.round( Math.ceil(number) / 2)
+    },
+    checkFlag(lang){
+      switch (lang){
+
+        case 'en':
+          lang = 'gb'
+          break;
+
+        case 'hy':
+          lang = 'am'
+          break;
+        case 'zh':
+          lang = 'de'
+          break;
+        
+          // case 'en':
+          // break;
+
+      }
+      console.log(lang,'lang')
+      const flag = lang
+      console.log(flag,'flag')
+      return flag
     }
   },
   
@@ -33,6 +56,7 @@ export default {
         :cardOriginalTitle=" element.original_title"
         :cardPosterPath=" element.poster_path"
         :cardOriginalLanguage=" element.original_language "
+        :cardFlag=" checkFlag(element.original_language) "
         :cardVoteAverage="trasformNumber(element.vote_average)"
       />
     </div>
@@ -46,6 +70,7 @@ export default {
         :cardOriginalTitle=" element.original_name"
         :cardPosterPath=" element.poster_path"
         :cardOriginalLanguage=" element.original_language "
+        :cardFlag=" checkFlag(element.original_language) "
         :cardVoteAverage="trasformNumber(element.vote_average)"
       />
     </div>

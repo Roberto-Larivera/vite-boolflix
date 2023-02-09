@@ -27,6 +27,10 @@ export default {
       type: Number,
       default: 0
     },
+    cardFlag:{
+      type: String,
+      default: '...'
+    }
   },
 
 
@@ -49,12 +53,12 @@ export default {
             :alt="cardOriginalTitle">
         </li>
         <li v-else>
-          <img src="https://via.placeholder.com/342.png"
+          <img src="https://via.placeholder.com/342.png/fff000/fff000"
             :alt="cardOriginalTitle">
         </li>
         <li>
           {{ cardOriginalLanguage }}
-          <span :class="`fi fi-${cardOriginalLanguage}`"></span>
+          <span :class="`fi fi-${cardFlag}`"></span>
         </li>
         <li>
           {{ cardVoteAverage }}

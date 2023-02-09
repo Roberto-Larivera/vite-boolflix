@@ -14,13 +14,13 @@ export default {
   },
   methods: {
     getCombined() {
-      this.getSearchApi()
-      this.getSearchApiTv()
+      this.getSearchApi('movie')
+      this.getSearchApi('tv')
     },
-    getSearchApi() {
-      console.log('sono dentro', this.store.textSearch)
+    getSearchApi(modelA) {
+      console.log('Testo da ricercare: ', this.store.textSearch)
       axios
-        .get('https://api.themoviedb.org/3/search/movie', {
+        .get('https://api.themoviedb.org/3/search/' + modelA, {
           params: {
             api_key: '215df58ae2869f4519de0d1f0963b234',
             query: this.store.textSearch,
@@ -28,35 +28,24 @@ export default {
           }
         })
         .then((response) => {
-          this.store.searchListMovie = response.data.results;
-          console.log(this.store.searchListMovie)
+          if (modelA == 'movie') {
+            this.store.searchListMovie = response.data.results;
+            console.log(modelA)
+          } else if (modelA == 'tv') {
+            this.store.searchListTv = response.data.results;
+            console.log(modelA)
+          }
+          console.log('response ok')
         })
         .catch((error) => {
+          if (modelA == 'movie') {
+            this.store.searchListMovie = [];
+            console.log(modelA)
+          } else if (modelA == 'tv') {
+            this.store.searchListTv = [];
+            console.log(modelA)
+          }
           console.log('error', error)
-          //this.store.loadingTime = false
-          this.store.searchListMovie = []
-          //this.getCharacters()
-        });
-    },
-    getSearchApiTv() {
-      console.log('sono dentro', this.store.textSearch)
-      axios
-        .get('https://api.themoviedb.org/3/search/tv', {
-          params: {
-            api_key: '215df58ae2869f4519de0d1f0963b234',
-            query: this.store.textSearch,
-            language: 'it'
-          }
-        })
-        .then((response) => {
-          this.store.searchListTv = response.data.results;
-          console.log(this.store.searchListTv)
-        })
-        .catch((error) => {
-          console.log('error tv', error)
-          //this.store.loadingTime = false
-          this.store.searchListTv = []
-          //this.getCharacters()
         });
     },
     
@@ -71,7 +60,7 @@ export default {
     <h2>
       La tua ricerca: {{ store.textSearch }}
     </h2>
-    
+
   </div>
 </template>
 
