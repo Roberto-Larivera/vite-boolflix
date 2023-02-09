@@ -19,7 +19,7 @@ export default {
     },
     
     getSearchApi(modelA) {
-      console.log('Testo da ricercare: ', this.store.textSearch)
+      this.store.loadingTime = true
       axios
         .get('https://api.themoviedb.org/3/search/' + modelA, {
           params: {
@@ -37,6 +37,8 @@ export default {
             console.log(modelA)
           }
           console.log('response ok')
+          this.store.loadingTime = false
+
         })
         .catch((error) => {
           if (modelA == 'movie') {
@@ -47,6 +49,8 @@ export default {
             console.log(modelA)
           }
           console.log('error', error)
+          this.store.loadingTime = false
+
         });
     },
 
