@@ -17,6 +17,7 @@ export default {
       this.getSearchApi('movie')
       this.getSearchApi('tv')
     },
+    
     getSearchApi(modelA) {
       console.log('Testo da ricercare: ', this.store.textSearch)
       axios
@@ -50,6 +51,9 @@ export default {
     },
 
   },
+  computed:{
+    
+  }
 
 }
 </script>
@@ -57,13 +61,13 @@ export default {
 <template>
   <header>
     <div class="container">
-      <div class="row row-cols-2 p-3">
-        <div class="col d-flex align-items-center">
+      <div class="row row-cols-2  align-items-center p-3">
+        <div class="col d-flex align-items-center ">
           <h1>
             Boolflix
           </h1>
         </div>
-        <div class="col d-flex align-items-center">
+        <div class="col d-flex align-items-center justify-content-end">
           <AppSearch @search="getCombined" />
         </div>
       </div>

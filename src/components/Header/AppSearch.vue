@@ -16,7 +16,7 @@ export default {
     <form action="" @submit.prevent="$emit('search')">
       <div class="input-group">
         <input class="form-control" type="search" name="search" id="input-search" placeholder="Cerca" v-model="store.textSearch">
-        <button class="btn btn-light" type="submit">Cerca</button>
+        <button class="btn btn-danger" type="submit">Cerca</button>
       </div>
     </form>
   </div>
