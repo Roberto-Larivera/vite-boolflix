@@ -1,18 +1,54 @@
 <script>
+import { store } from '../../store.js';
+import AppCard from './AppCard.vue';
+
+
 export default {
   name: 'AppMain',
+  components:{
+    AppCard,
+  },
   data(){
     return{
-
+      store,
     }
-  }
+  },
+  methods: {
+    trasformNumber(number) {
+      return Math.round( Math.ceil(number) / 2)
+    }
+  },
   
 }
 </script>
 
 <template>
   <div>
-    AppMain
+    <h2>
+      film
+    </h2>
+    <div class="card" v-for="(element, index) in this.store.searchListMovie">
+      <AppCard
+        :cardTitle="element.title "
+        :cardOriginalTitle=" element.original_title"
+        :cardPosterPath=" element.poster_path"
+        :cardOriginalLanguage=" element.original_language "
+        :cardVoteAverage="trasformNumber(element.vote_average)"
+      />
+    </div>
+
+    <h2>
+      tv
+    </h2>
+    <div class="card" v-for="(element, index) in this.store.searchListTv">
+      <AppCard
+        :cardTitle="element.name "
+        :cardOriginalTitle=" element.original_name"
+        :cardPosterPath=" element.poster_path"
+        :cardOriginalLanguage=" element.original_language "
+        :cardVoteAverage="trasformNumber(element.vote_average)"
+      />
+    </div>
   </div>
 </template>
 
