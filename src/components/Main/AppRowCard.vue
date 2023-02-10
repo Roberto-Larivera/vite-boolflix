@@ -20,31 +20,14 @@ export default {
             type: String,
             Default: 'Name List'
         },
-        rowListType : Array,
-        rowType : String,
+        rowListType:{
+            type: Array,
+            Default: []
+        } ,
+        rowType: String,
     },
     methods: {
-        trasformNumber(number) {
-            return Math.round(Math.ceil(number) / 2)
-        },
-        checkFlag(lang) {
-            switch (lang) {
-
-                case 'en':
-                    lang = 'gb'
-                    break;
-
-                case 'hy':
-                    lang = 'am'
-                    break;
-                case 'zh':
-                    lang = 'de'
-                    break;
-
-            }
-            const flag = lang
-            return flag
-        }
+       
     },
 
 }
@@ -56,23 +39,30 @@ export default {
             <h2 class="text-light" v-if="(store.loadingTime == false && rowListType != '')">
                 {{ rowName }}
             </h2>
+            <h2 class="text-light"
+                v-else-if="(store.loadingTime == false && rowListType == ''  && store.bollListMovie == true)">
+                Ci dispiace non ci sono risultati nella {{ rowName }} per: <span class="text-danger">{{
+                    store.textSearch
+                }}</span>
+            </h2>
+            <h2 class="text-light"
+                v-else-if="(store.loadingTime == false && rowListType == ''  && store.bollListTv == true)">
+                Ci dispiace non ci sono risultati nella {{ rowName }} per: <span class="text-danger">{{
+                    store.textSearch
+                }}</span>
+            </h2>
         </div>
+
         <template v-if=(store.loadingTime)>
             <div class="col d-flex align-items-stretch">
                 <LoadingPlaceholder />
             </div>
         </template>
+
         <template v-else>
-                <div class="col d-flex align-items-stretch" v-for="element in rowListType">
-                    <AppCard
-                    :cardElement="element" 
-                    />
-                </div>
-                <div class="col-12" v-if="rowListType == ''">
-                    <h4 class="text-light">
-                        Ci dispiace non ci sono risultati nella lista {{ rowType }} per: <span class="text-danger">{{ store.textSearch }}</span>
-                    </h4>
-                </div>
+            <div class="col d-flex align-items-stretch" v-for="element in rowListType">
+                <AppCard :cardElement="element" />
+            </div>
         </template>
     </div>
 </template>

@@ -17,51 +17,73 @@ export default {
       this.getSearchApi('movie')
       this.getSearchApi('tv')
     },
-    
+
     getSearchApi(modelA) {
-      if(this.store.textSearch == ''){
+      if (this.store.textSearch == '') {
         this.store.searchListTv = [];
         this.store.searchListMovie = [];
-      }else{
+        this.store.bollListTv = false;
+        this.store.bollListMovie = false;
+
+      } else {
         this.store.loadingTime = true
-      axios
-        .get('https://api.themoviedb.org/3/search/' + modelA, {
-          params: {
-            api_key: '215df58ae2869f4519de0d1f0963b234',
-            query: this.store.textSearch,
-            language: 'it'
-          }
-        })
-        .then((response) => {
-          if (modelA == 'movie') {
-            this.store.searchListMovie = response.data.results;
-            console.log(modelA)
-          } else if (modelA == 'tv') {
-            this.store.searchListTv = response.data.results;
-            console.log(modelA)
-          }
-          console.log('response ok')
-          this.store.loadingTime = false
+        axios
+          .get('https://api.themoviedb.org/3/search/' + modelA, {
+            params: {
+              api_key: '215df58ae2869f4519de0d1f0963b234',
+              query: this.store.textSearch,
+              language: 'it'
+            }
+          })
+          .then((response) => {
+            console.log('sei fregno')
+            if (modelA == 'movie') {
+              this.store.searchListMovie = response.data.results;
+              console.log(modelA)
+              console.log('risposta r', response)
+              console.log('risposta', this.store.searchListMovie)
+              this.store.bollListMovie = false;
+              // if (this.store.searchListMovie == []) {
+              //   this.store.bollListMovie = true;
+              //   console.log('sei un coglione')
+              // }
+            } else if (modelA == 'tv') {
+              this.store.searchListTv = response.data.results;
+              console.log(modelA)
+              console.log('risposta r', response)
+              console.log('risposta', this.store.searchListTv)
+              this.store.bollListTv = false;
+              // if (this.store.searchListTv == ['']) {
+              //   this.store.bollListTv = true;
+              //   console.log('sei un coglione')
+              // }
+            }
 
-        })
-        .catch((error) => {
-          if (modelA == 'movie') {
-            this.store.searchListMovie = [];
-            console.log(modelA)
-          } else if (modelA == 'tv') {
-            this.store.searchListTv = [];
-            console.log(modelA)
-          }
-          console.log('error', error)
-          this.store.loadingTime = false
+            console.log('response ok')
+            this.store.loadingTime = false
 
-        });
+          })
+          .catch((error) => {
+            if (modelA == 'movie') {
+              this.store.searchListMovie = [];
+              this.store.bollListMovie = true;
+              console.log(modelA)
+            } else if (modelA == 'tv') {
+              this.store.searchListTv = [];
+              this.store.bollListTv = true;
+              console.log(modelA)
+            }
+
+            console.log('error', error)
+            this.store.loadingTime = false
+
+          });
       }
     },
 
   },
-  computed:{
-    
+  computed: {
+
   }
 
 }
@@ -85,9 +107,10 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-header{
-  background-color: black ;
-  h1{
+header {
+  background-color: black;
+
+  h1 {
     font-weight: bold;
     color: red;
   }

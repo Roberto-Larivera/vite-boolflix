@@ -46,7 +46,7 @@ export default {
 <template>
     <div class="card w-100 text-light border border-0">
       <!-- IMG  -->
-      <div v-if="cardElement.poster_path != null">
+      <div class="h-100 w-100" v-if="cardElement.poster_path != null">
         <img 
         class="card-img w-100 h-100 obj-fit" 
         :src="`http://image.tmdb.org/t/p/w342/${cardElement.poster_path}`"
@@ -67,7 +67,7 @@ export default {
          {{ cardElement.title }}
        </h5>
        <h5 class="card-title text-center position-absolute top-50 start-50 translate-middle" v-else-if="cardElement.name" >
-         {{ cardElement.title }}
+         {{ cardElement.name }}
        </h5>
 
      </div>
@@ -76,7 +76,7 @@ export default {
         <h5 class="card-title text-center " v-if="cardElement.poster_path != null">{{ cardElement.title }}</h5>
         <div v-if="cardElement.title != cardElement.original_title">
           <h6 class="card-title text-center" v-if="cardElement.title">"{{ cardElement.original_title }}"</h6>
-          <h6 class="card-title text-center" v-else-if="cardElement.name">"{{ cardElement.original_title }}"</h6>
+          <h6 class="card-title text-center" v-else-if="cardElement.name">"{{ cardElement.original_name }}"</h6>
         </div>
         <p class="card-text">Lingua: <span :class="`fi fi-${checkFlag}`"></span></p>
         <p class="card-text "> Voto:
