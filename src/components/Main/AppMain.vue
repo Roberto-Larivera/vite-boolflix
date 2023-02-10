@@ -2,6 +2,7 @@
 import { store } from '../../store.js';
 import AppCard from './AppCard.vue';
 import LoadingPlaceholder from './LoadingPlaceholder.vue';
+import AppRowCard from './AppRowCard.vue';
 
 
 export default {
@@ -9,33 +10,11 @@ export default {
   components: {
     AppCard,
     LoadingPlaceholder,
+    AppRowCard,
   },
   data() {
     return {
       store,
-    }
-  },
-  methods: {
-    trasformNumber(number) {
-      return Math.round(Math.ceil(number) / 2)
-    },
-    checkFlag(lang) {
-      switch (lang) {
-
-        case 'en':
-          lang = 'gb'
-          break;
-
-        case 'hy':
-          lang = 'am'
-          break;
-        case 'zh':
-          lang = 'de'
-          break;
-
-      }
-      const flag = lang
-      return flag
     }
   },
 
@@ -45,27 +24,39 @@ export default {
 <template>
   <main>
     <div class="container">
-      <div class="row row-cols-5 p-5 g-5">
+      <AppRowCard 
+      :rowName="'Lista Film'" 
+      :rowListType="store.searchListMovie"
+      :rowType="'movie'"
+      />
+      <AppRowCard 
+      :rowName="'Lista Serie Tv'" 
+      :rowListType="store.searchListTv"
+      :rowType="'tv'"
+      />
+      
+      <!-- <div class="row row-cols-5 p-5 g-5">
         <div class="col-12">
-          <h2 class="text-light">
-            Lista Film
-          </h2>
+            <h2 class="text-light">
+                Lista Film
+            </h2>
         </div>
         <template v-if=(store.loadingTime)>
-          <div class="col d-flex align-items-stretch">
-            <LoadingPlaceholder />
-          </div>
+            <div class="col d-flex align-items-stretch">
+                <LoadingPlaceholder />
+            </div>
         </template>
         <template v-else>
-          <div class="col d-flex align-items-stretch" v-for="(element, index) in this.store.searchListMovie">
-            <AppCard :cardTitle="element.title" :cardOriginalTitle="element.original_title"
-              :cardPosterPath="element.poster_path" :cardOriginalLanguage="element.original_language"
-              :cardFlag="checkFlag(element.original_language)" :cardVoteAverage="trasformNumber(element.vote_average)"
-              :cardOverview="element.overview" />
-          </div>
+            <div class="col d-flex align-items-stretch" v-for="(element, index) in this.store.searchListMovie">
+                <AppCard :cardTitle="element.title" :cardOriginalTitle="element.original_title"
+                    :cardPosterPath="element.poster_path" :cardOriginalLanguage="element.original_language"
+                    :cardFlag="checkFlag(element.original_language)"
+                    :cardVoteAverage="trasformNumber(element.vote_average)" :cardOverview="element.overview" />
+            </div>
         </template>
-      </div>
-      <div class="row row-cols-5 p-5 g-5">
+    </div> -->
+      
+    <!-- <div class="row row-cols-5 p-5 g-5">
         <div class="col-12">
           <h2 class="text-light">
             Lista SerieTv
@@ -84,7 +75,7 @@ export default {
               :cardOverview="element.overview" />
           </div>
         </template>
-      </div>
+      </div> -->
 
     </div>
   </main>
