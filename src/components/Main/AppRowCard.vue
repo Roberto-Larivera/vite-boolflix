@@ -64,7 +64,7 @@ export default {
         </template>
         <template v-else>
                 <div class="col d-flex align-items-stretch" v-for="element in rowListType">
-                    <AppCard v-if="rowType == 'movie'"
+                    <AppCard
                     :cardElement="element" 
                     />
                 </div>
