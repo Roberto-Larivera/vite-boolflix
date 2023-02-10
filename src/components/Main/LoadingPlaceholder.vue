@@ -28,7 +28,4 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.card {
-  //background-color: $color_primary;
-}
 </style>

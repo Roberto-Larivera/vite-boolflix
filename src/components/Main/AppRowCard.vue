@@ -51,7 +51,7 @@ export default {
 </script>
 
 <template>
-    <div class="row row-cols-5 p-5 g-5">
+    <div class="row row-cols-5 p-5 g-1">
         <div class="col-12">
             <h2 class="text-light" v-if="(store.loadingTime == false && rowListType != '')">
                 {{ rowName }}
@@ -65,23 +65,13 @@ export default {
         <template v-else>
                 <div class="col d-flex align-items-stretch" v-for="element in rowListType">
                     <AppCard v-if="rowType == 'movie'"
-                        :cardTitle="element.title" 
-                        :cardOriginalTitle="element.original_title"  
-                        :cardPosterPath="element.poster_path" 
-                        :cardOriginalLanguage="element.original_language"
-                        :cardFlag="checkFlag(element.original_language)"
-                        :cardVoteAverage="trasformNumber(element.vote_average)" 
-                        :cardOverview="element.overview" 
+                    :cardElement="element" 
                     />
-                    <AppCard v-else-if="rowType == 'tv'"
-                        :cardTitle="element.name" 
-                        :cardOriginalTitle="element.original_name"  
-                        :cardPosterPath="element.poster_path" 
-                        :cardOriginalLanguage="element.original_language"
-                        :cardFlag="checkFlag(element.original_language)"
-                        :cardVoteAverage="trasformNumber(element.vote_average)" 
-                        :cardOverview="element.overview" 
-                    />
+                </div>
+                <div class="col-12" v-if="rowListType == ''">
+                    <h4 class="text-light">
+                        Ci dispiace non ci sono risultati nella lista {{ rowType }} per: <span class="text-danger">{{ store.textSearch }}</span>
+                    </h4>
                 </div>
         </template>
     </div>

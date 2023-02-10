@@ -19,7 +19,11 @@ export default {
     },
     
     getSearchApi(modelA) {
-      this.store.loadingTime = true
+      if(this.store.textSearch == ''){
+        this.store.searchListTv = [];
+        this.store.searchListMovie = [];
+      }else{
+        this.store.loadingTime = true
       axios
         .get('https://api.themoviedb.org/3/search/' + modelA, {
           params: {
@@ -52,6 +56,7 @@ export default {
           this.store.loadingTime = false
 
         });
+      }
     },
 
   },
