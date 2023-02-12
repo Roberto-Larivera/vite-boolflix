@@ -24,6 +24,7 @@ export default {
         this.store.searchListMovie = [];
         this.store.bollListTv = false;
         this.store.bollListMovie = false;
+        this.store.risultedTotalBol = false;
 
       } else {
         this.store.loadingTime = true
@@ -60,6 +61,8 @@ export default {
             }
 
             console.log('response ok')
+            this.risultedTotal()
+            this.store.risultedTotalBol = true
             this.store.loadingTime = false
 
           })
@@ -80,10 +83,12 @@ export default {
           });
       }
     },
+    risultedTotal(){
+      this.store.risultedTotalVar = this.store.searchListMovie.length + this.store.searchListTv.length
+    }
 
   },
   computed: {
-
   }
 
 }

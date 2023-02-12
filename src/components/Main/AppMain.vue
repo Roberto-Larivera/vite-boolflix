@@ -19,6 +19,8 @@ export default {
       store,
     }
   },
+  computed:{
+  }
 
 }
 </script>
@@ -26,6 +28,13 @@ export default {
 <template>
   <main>
     <div class="container">
+      <div class="row" v-if="store.risultedTotalBol">
+        <div class="col-auto">
+          <h2 class="text-light">
+            La tua ricerca a dato <span class="fw-bold mytextdanger">{{ store.risultedTotalVar }}</span> risultati
+          </h2>
+        </div>
+      </div>
       <AppRowCard :rowName="'Lista Film'" :rowListType="store.searchListMovie" :rowType="'movie'" />
       <AppRowCard :rowName="'Lista Serie Tv'" :rowListType="store.searchListTv" :rowType="'tv'" />
 

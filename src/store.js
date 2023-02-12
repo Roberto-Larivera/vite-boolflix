@@ -7,4 +7,6 @@ export const store = reactive({
     bollListMovie: false,
     bollListTv: false,
     loadingTime: false,
+    risultedTotalVar: 0,
+    risultedTotalBol: false,
 });
