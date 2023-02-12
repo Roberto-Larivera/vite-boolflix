@@ -37,7 +37,6 @@ export default {
             }
           })
           .then((response) => {
-            console.log('sei fregno')
             if (modelA == 'movie') {
               this.store.searchListMovie = response.data.results;
               console.log(modelA)
