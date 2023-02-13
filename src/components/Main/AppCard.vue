@@ -85,7 +85,7 @@ export default {
           <font-awesome-icon :icon="['far', 'star']" v-for="n in (5 - trasformNumber)" />
         </span>
       </p>
-      <p class="card-text" v-if="cardElement.overview"><span class="fw-bold">Descrizione:</span></p>
+      <p class="card-text mb-1" v-if="cardElement.overview"><span class="fw-bold">Descrizione:</span></p>
       <!-- OVERVIEW  -->
       <p class="card-text card_text-over" v-if="cardElement.overview && truncatedTextVar == true">{{ truncatedText() }}
         <a class="mytextdanger" href="#nogo" @click.prevent="truncatedTextVar = false">Vedi di più</a>
